@@ -5,8 +5,15 @@
     "pnpm-lock.yaml"
   ],
   "pipeline": {
-    "build": {},
-    "typecheck": {},
-    "test": {}
+    "build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"]
+    },
+    "typecheck": {
+      "dependsOn": ["build"]
+    },
+    "test": {
+      "dependsOn": ["build"]
+    }
   }
 }

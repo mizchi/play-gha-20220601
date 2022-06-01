@@ -16,4 +16,5 @@ jobs:
     runs-on: ubuntu-latest
     # needs: setup
     steps:
-      - uses: ./.github/composite/setup.yaml
+      - uses: ./.github/setup
+      - run: ls .

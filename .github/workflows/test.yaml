@@ -8,7 +8,9 @@ on:
 jobs:
   setup:
     name: setup
-    uses: .github/workflows/setup.yaml@setup
+    uses: {owner}/{repo}/{path}/setup.yaml@{ref}
+    secrets:
+      token: ${{ secrets.TOKEN }}
 
   job2:
     runs-on: ubuntu-latest

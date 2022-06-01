@@ -1,0 +1,41 @@
+name: setup
+description: shared setup
+inputs:
+outputs:
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+      with:
+        token: ${{secrets.GITHUB_TOKEN}}
+      shell: bash
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 16.x
+      shell: bash
+    - id: turbo-cache
+      uses: actions/cache@v2
+      with:
+        path: .turbo
+        key: turbo-${{ github.job }}-${{ github.ref_name }}-${{ github.sha }}
+        restore-keys: |
+          turbo-${{ github.job }}-${{ github.ref_name }}-
+      shell: bash
+    - id: pnpm-install
+      uses: pnpm/action-setup@v2.0.1
+      with:
+        version: 7.1.6
+        run_install: false
+      shell: bash
+    - id: pnpm-cache
+      run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+      shell: bash
+    - uses: actions/cache@v3
+      with:
+        path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+      shell: bash
+    - run: pnpm install --frozen-lockfile
+      shell: bash

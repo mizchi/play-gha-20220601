@@ -15,8 +15,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16.x
-          scope: '@plaidev'
-          registry-url: 'https://npm.pkg.github.com'
       - id: turbo-cache
         uses: actions/cache@v2
         with:
@@ -24,9 +22,8 @@ jobs:
           key: turbo-${{ github.job }}-${{ github.ref_name }}-${{ github.sha }}
           restore-keys: |
             turbo-${{ github.job }}-${{ github.ref_name }}-
-      - uses: pnpm/action-setup@v2.0.1
-        name: Install pnpm
-        id: pnpm-install
+      - id: pnpm-install
+        uses: pnpm/action-setup@v2.0.1
         with:
           version: 7.1.6
           run_install: false
@@ -39,5 +36,3 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
       - run: pnpm install --frozen-lockfile
-      - run: pnpm build
-      # === SHARED SETUP END ====

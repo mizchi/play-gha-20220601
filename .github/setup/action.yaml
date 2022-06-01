@@ -13,7 +13,6 @@ runs:
         key: turbo-${{ github.job }}-${{ github.ref_name }}-${{ github.sha }}
         restore-keys: |
           turbo-${{ github.job }}-${{ github.ref_name }}-
-      shell: bash
     - id: pnpm-install
       uses: pnpm/action-setup@v2.0.1
       with:

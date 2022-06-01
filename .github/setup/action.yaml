@@ -1,7 +1,5 @@
 name: setup
 description: shared setup
-inputs:
-outputs:
 runs:
   using: "composite"
   steps:

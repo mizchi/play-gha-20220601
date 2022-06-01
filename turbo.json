@@ -1,0 +1,12 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "baseBranch": "origin/main",
+  "globalDependencies": [
+    "pnpm-lock.yaml"
+  ],
+  "pipeline": {
+    "build": {},
+    "typecheck": {},
+    "test": {}
+  }
+}

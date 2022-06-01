@@ -1,0 +1,23 @@
+{
+  "name": "@internal/core",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -p . --noEmit",
+    "build": "vite build",
+    "test": "vitest --run"
+  },
+  "exports": {
+    "./mod": "./dist/core.es.js"
+  },
+  "typesVersions": {
+    "*": {
+      "./mod": [
+        "./mod.ts"
+      ]
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
